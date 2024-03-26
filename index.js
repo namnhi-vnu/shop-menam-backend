@@ -38,7 +38,7 @@ app.use("/api/category", productCategoryRoute);
 app.use("/api/coupon", couponRoute);
 app.use("/api/upload", uploadRoute);
 app.get("/", (req, res) => {
-    res.send("HHIHIhI");
+    res.send("Hi");
 });
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));

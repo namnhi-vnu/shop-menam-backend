@@ -47,7 +47,13 @@ const createUser = asyncHandler(async (req, res) => {
                 .status(400)
                 .json({ success: false, message: "Password không hợp lệ" });
 
-        user = new userModel({ firstname, lastname: "", phone, password });
+        user = new userModel({
+            firstname,
+            lastname: "",
+            avatar: "https://res.cloudinary.com/dfnwjuvbc/image/upload/v1711101114/images/en0yhhjtsilnaqakjifo.png",
+            phone,
+            password,
+        });
         const hasPassword = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, hasPassword);
         await user.save();
@@ -245,9 +251,7 @@ const updateUser = asyncHandler(async (req, res) => {
                     address: req.body.address || "",
                     gender: req.body.gender || "",
                     birthday: req.body.birthday || "",
-                    avatar:
-                        req.body.avatar ||
-                        "https://res.cloudinary.com/dfnwjuvbc/image/upload/v1710574441/images/mimjicocxvhg2kwuslsf.png",
+                    avatar: req.body.avatar || "",
                 },
                 {
                     new: true,
